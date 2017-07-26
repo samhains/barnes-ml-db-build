@@ -1,0 +1,4 @@
+API = AIzaSyCOXXxP3trP5odfgLz6Ly_f9vCMJilRe78
+cx = 005815974994632070465:-gmzsw8khic
+
+GET https://www.googleapis.com/customsearch/v1?key=AIzaSyCOXXxP3trP5odfgLz6Ly_f9vCMJilRe78&cx=005815974994632070465:-gmzsw8khic&q=lectures&searchType=image
