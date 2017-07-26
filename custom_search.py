@@ -14,8 +14,16 @@ def retrieve_images_for_class(tag_name):
         os.mkdir(tag_name) 
 
     url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q={}&count=150&offset={}&mkt=en-us".format(tag_name, start)
-    r = requests.get(url, headers=headers).json()
-    num_images_in_class = r["totalEstimatedMatches"]
+    try:
+        r = requests.get(url, headers=headers).json()
+        num_images_in_class = r["totalEstimatedMatches"]
+    except requests.exceptions.Timeout:
+        print('timeout error!')
+    except requests.exceptions.TooManyRedirects:
+        print('too many redirects error!')
+    except requests.exceptions.RequestException as e:
+        print('catastrophic error', e)
+
     sys.stdout.flush()    
     print('tagname:', tag_name, 'has:', num_images_in_class)
 
@@ -31,13 +39,19 @@ def retrieve_images_for_class(tag_name):
             image_url = item["contentUrl"]
 
             fmt = "."+item["encodingFormat"]
-            print(fmt)
             img_file_path = "./{}/{}_{}{}".format(tag_name,tag_name,i,fmt)
             if not os.path.isfile(img_file_path):
                 print('image doesnt already exist')
-                img_data = requests.get(image_url, headers={'user-agent': 'My app'}).content
-                with open(img_file_path, 'wb') as handler:
-                    handler.write(img_data)
+                try:
+                    img_data = requests.get(image_url, headers={'user-agent': 'My app'}).content
+                    with open(img_file_path, 'wb') as handler:
+                        handler.write(img_data)
+                except requests.exceptions.Timeout:
+                    print('timeout error!')
+                except requests.exceptions.TooManyRedirects:
+                    print('too many redirects error!')
+                except requests.exceptions.RequestException as e:
+                    print('catastrophic error', e)
 
         start = start + SIZE_OF_BING_IMAGE_BATCH
         url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q={}&count=150&offset={}&mkt=en-us".format(tag_name, start)
