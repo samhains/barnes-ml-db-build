@@ -1,4 +1,5 @@
 import requests
+import sys
 import os
 import json
 
@@ -15,6 +16,7 @@ def retrieve_images_for_class(tag_name):
     url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q={}&count=150&offset={}&mkt=en-us".format(tag_name, start)
     r = requests.get(url, headers=headers).json()
     num_images_in_class = r["totalEstimatedMatches"]
+    sys.stdout.flush()    
     print('tagname:', tag_name, 'has:', num_images_in_class)
 
     while i < num_images_in_class:
@@ -30,9 +32,12 @@ def retrieve_images_for_class(tag_name):
 
             fmt = "."+item["encodingFormat"]
             print(fmt)
-            img_data = requests.get(image_url).content
-            with open("./{}/{}_{}{}".format(tag_name,tag_name,i,fmt), 'wb') as handler:
-                handler.write(img_data)
+            img_file_path = "./{}/{}_{}{}".format(tag_name,tag_name,i,fmt)
+            if not os.path.isfile(img_file_path):
+                print('image doesnt already exist')
+                img_data = requests.get(image_url, headers={'user-agent': 'My app'}).content
+                with open(img_file_path, 'wb') as handler:
+                    handler.write(img_data)
 
         start = start + SIZE_OF_BING_IMAGE_BATCH
         url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q={}&count=150&offset={}&mkt=en-us".format(tag_name, start)
