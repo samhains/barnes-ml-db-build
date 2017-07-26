@@ -11,14 +11,14 @@ seduction
 top hat
 ocean
 fish
-sail
+sail 
 pensive
 abstract
 girl
 rider
 halo
 lamb
-table cloth
+tablecloth
 dock
 washing
 vest
@@ -56,9 +56,10 @@ children
 goat
 cliffs
 windows
-sitting standing
+sitting 
+standing
 carrot
-thrown
+throne
 apron
 pears
 mountains
@@ -88,7 +89,8 @@ hair
 horse
 cup
 wallpaper
-portrait dress
+portrait 
+dress
 time piece
 men
 back
@@ -111,7 +113,8 @@ skirt
 women
 posing
 laundry
-smoke stack
+smoke 
+stack
 book
 bird
 gathering
@@ -134,7 +137,6 @@ spear
 bed
 relaxing
 fan
-
 angels
 perspective
 jewelry
@@ -171,7 +173,6 @@ bather
 chair
 urban
 studio
-paintings
 holding
 dog
 pitcher
@@ -180,107 +181,8 @@ tablecloth
 lake
 room
 jump rope
-wall paper
 leaves
 family
 cubism
 resting
 stage
-pen
-woman
-top hat
-brick
-dishes
-girls
-cross
-ladies
-christ
-standing
-shore
-bucket
-wall
-curtains
-earring
-ribbon
-outdoors
-piano
-melon
-earth
-spotlight
-bear
-hat
-mountain
-ground
-bathing suits
-stockings
-sheets
-easel
-sheet
-wings
-teeth
-fishing
-statue
-suit
-nude
-swan
-game
-water
-cherubs
-skull
-thinking
-letter
-heart
-jug
-crown
-sketching
-buttons
-dress
-tie
-shoes
-sandals
-peaches
-lemons
-pipe
-pots
-race track
-horns
-boats
-robe
-bracelet
-landscape
-lion
-waterfront
-portrait
-vegetables
-umbrella
-uniform
-jacket
-seated
-baby
-curtain
-dragon
-gloves
-necklace
-outside
-fruit
-eating
-sea
-sand
-religious
-still life
-house
-tree
-limes
-view
-bathing
-books
-tutu
-waves
-mother
-ballet
-houses
-cow
-bread
-sword
-lounging
-reclining

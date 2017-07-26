@@ -3,7 +3,7 @@ import sys
 import os
 import json
 
-headers = {"Ocp-Apim-Subscription-Key": "#"}
+headers = {"Ocp-Apim-Subscription-Key": "06bb4bcb8ee1440bb3c8058e3692185e"}
 SIZE_OF_BING_IMAGE_BATCH = 150
 
 
