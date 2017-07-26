@@ -3,7 +3,7 @@ import sys
 import os
 import json
 
-headers = {"Ocp-Apim-Subscription-Key": "06bb4bcb8ee1440bb3c8058e3692185e"}
+headers = {"Ocp-Apim-Subscription-Key": "#"}
 SIZE_OF_BING_IMAGE_BATCH = 150
 
 
@@ -59,8 +59,12 @@ def retrieve_images_for_class(tag_name):
         print('next url starts with:',start)
 
 file = open("barnes_labels.txt","r") 
-labels = set(file.read().split(','))
+labels = file.read().split(',')
 labels = [tag.strip().replace(' ', '+') for tag in labels if tag != ""]
+labels = sorted(set(labels))
 
 for label in labels:
-    retrieve_images_for_class(label)
+    if label == "":
+        print("blank")
+    else:
+        retrieve_images_for_class(label)
