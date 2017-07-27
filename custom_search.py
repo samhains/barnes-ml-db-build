@@ -66,8 +66,9 @@ labels = file.read().split(',')
 labels = [tag.strip().replace(' ', '+') for tag in labels if tag != ""]
 labels = sorted(set(labels))
 
-for label in labels:
-    if label == "":
-        print("blank")
+for idx, label in enumerate(labels):
+    if label == "" or idx < 15:
+        print("done", label)
     else:
+        print("starting", idx, label)
         retrieve_images_for_class(label)
