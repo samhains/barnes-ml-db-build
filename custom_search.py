@@ -30,6 +30,8 @@ def retrieve_images_for_class(tag_name):
         print('too many redirects error!')
     except requests.exceptions.RequestException as e:
         print('catastrophic error', e)
+    except:
+        print("other weird error")
 
     print('tagname:', tag_name, 'has:', num_of_existing_images_in_class ) 
 
