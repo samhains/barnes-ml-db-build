@@ -13,10 +13,17 @@ def retrieve_images_for_class(tag_name):
     if not os.path.exists(tag_name):
         os.mkdir(tag_name) 
 
+    num_of_existing_images_in_class = len([name for name in os.listdir(tag_name) if os.path.isfile("./{}/{}".format(tag_name, name))])
+    print(num_of_existing_images_in_class)
+    if num_of_existing_images_in_class > 1:
+        start = num_of_existing_images_in_class
+        i = num_of_existing_images_in_class
+
     url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q={}&count=150&offset={}&mkt=en-us".format(tag_name, start)
     try:
         r = requests.get(url, headers=headers).json()
-        num_images_in_class = r["totalEstimatedMatches"]
+        num_images_in_class = min(int(r["totalEstimatedMatches"]), 2000)
+        print("num_images_in_class: ",tag_name, num_images_in_class)
     except requests.exceptions.Timeout:
         print('timeout error!')
     except requests.exceptions.TooManyRedirects:
@@ -24,17 +31,13 @@ def retrieve_images_for_class(tag_name):
     except requests.exceptions.RequestException as e:
         print('catastrophic error', e)
 
-    sys.stdout.flush()    
-    print('tagname:', tag_name, 'has:', num_images_in_class)
+    print('tagname:', tag_name, 'has:', num_of_existing_images_in_class ) 
 
     while i < num_images_in_class:
         items = r["value"]
-        j = 0
 
-        gen = (item for item in items if j < SIZE_OF_BING_IMAGE_BATCH)
-        for item in gen:
-            i = i+1
-            j = j+1
+        for item in items:
+            i = i + 1
             print('saving image:',i)
             image_url = item["contentUrl"]
 
