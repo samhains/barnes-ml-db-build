@@ -57,6 +57,8 @@ def retrieve_images_for_class(tag_name):
                     print('too many redirects error!')
                 except requests.exceptions.RequestException as e:
                     print('catastrophic error', e)
+                except:
+                    print("other weird error")
 
         start = start + SIZE_OF_BING_IMAGE_BATCH
         url = "https://api.cognitive.microsoft.com/bing/v5.0/images/search?q={}&count=150&offset={}&mkt=en-us".format(tag_name, start)
